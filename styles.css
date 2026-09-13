@@ -56,7 +56,7 @@ main {
   padding: 0 4vw;
 }
 .intro {
-  min-height: 55vh;
+  min-height: 25vh;
   padding: 8vh 0 6vh;
   display: flex;
   flex-direction: column;
@@ -71,7 +71,7 @@ main {
 }
 .intro h1 {
   margin: 0;
-  font-size: clamp(5rem, 15vw, 13rem);
+  font-size: clamp(2.5rem, 7vw, 8rem);
   font-weight: 500;
   line-height: 0.86;
   letter-spacing: -0.075em;
@@ -130,7 +130,7 @@ main {
 }
 .category-card h3 {
   margin: 0 0 0.45rem;
-  font-size: clamp(1.45rem, 2.5vw, 2.6rem);
+  font-size: clamp(1.05rem, 1.6vw, 1.6rem);
   font-weight: 500;
   letter-spacing: -0.045em;
 }
@@ -158,12 +158,11 @@ footer {
   min-height: calc(100vh - 88px);
 }
 .category-hero {
-  min-height: 58vh;
+  min-height: 25vh;
   padding: 9vh 0 5vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  border-bottom: 1px solid var(--ink);
 }
 .category-hero h1 {
   max-width: 1100px;
@@ -201,11 +200,11 @@ footer {
     height: 72px;
   }
   .intro {
-    min-height: 44vh;
+    min-height: 25vh;
     padding-top: 4rem;
   }
   .intro h1 {
-    font-size: clamp(4.5rem, 28vw, 8rem);
+    font-size: clamp(2.2rem, 18vw, 5.5rem);
   }
   .categories {
     padding-top: 3rem;
