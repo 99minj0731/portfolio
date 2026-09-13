@@ -1,0 +1,83 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  color: #111;
+  background: #fff;
+}
+
+.project-detail {
+  width: min(100%);
+  margin: 0 auto 0 0;
+  padding: 40px 0px 120px;
+}
+
+.project-label {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.project-hero h1 {
+  margin: 0;
+  font-size: clamp(1.6rem, 3.5vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.project-desc {
+  max-width: 800px;
+  margin: 24px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #555;
+}
+
+.project-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin: 72px 0;
+  padding-top: 28px;
+  border-top: 1px solid #ddd;
+}
+
+.project-info strong {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.project-info p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.project-images {
+  display: grid;
+  gap: 24px;
+}
+
+.project-images img {
+  width: 100%;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .project-detail {
+    padding: 56px 18px 80px;
+  }
+
+  .project-info {
+    grid-template-columns: 1fr;
+    margin: 48px 0;
+  }
+}
