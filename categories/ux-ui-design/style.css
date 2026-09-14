@@ -1,3 +1,79 @@
-@import url('../../styles.css');
+@import url("../../styles.css");
 
-/* UX/UI Design 페이지 전용 스타일을 아래에 추가하세요. */
+/* Package Design 페이지 전용 스타일을 아래에 추가하세요. */
+
+.archive-label {
+  margin: 1rem 0 0.8rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: #777;
+}
+
+.project-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+}
+
+.project-tab {
+  padding: 1.2rem 1rem;
+  border: 0;
+  border-right: 1px solid #111;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.project-tab:last-child {
+  border-right: 0;
+}
+
+.project-tab.is-active {
+  background: #111;
+  color: #fff;
+}
+
+.project-panel {
+  display: none;
+  padding: 1rem 0;
+}
+
+.project-panel.is-active {
+  display: block;
+}
+
+.project-panel h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1rem, 3vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.project-frame {
+  width: 100%;
+  border: 0;
+  display: block;
+  overflow: hidden;
+}
+
+.top-button {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #111;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.top-button:hover {
+  background: #111;
+  color: #fff;
+}
