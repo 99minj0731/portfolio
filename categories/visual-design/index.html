@@ -18,9 +18,27 @@
         <h1>Visual Design</h1>
         <p>브랜드의 인상을 선명한 이미지로 만듭니다.</p>
       </section>
-      <section class="empty-projects" aria-label="프로젝트 목록">
-        <p>PROJECT ARCHIVE</p>
-        <h2>프로젝트를 이곳에<br />하나씩 채워갈 예정입니다.</h2>
+      <section class="project-archive">
+        <p class="archive-label">PROJECTS</p>
+
+        <div class="project-tabs">
+          <button
+            class="project-tab is-active"
+            data-project="key-visual"
+            data-src="projects/key-visual/index.html"
+          >
+            Key Visual
+          </button>
+        </div>
+        <iframe
+          id="project-frame"
+          class="project-frame"
+          src="projects/key-visual/index.html"
+          title="Project detail"
+        ></iframe>
+        <button class="top-button" type="button" aria-label="맨 위로 이동">
+          ↑
+        </button>
       </section>
     </main>
     <script src="script.js"></script>
