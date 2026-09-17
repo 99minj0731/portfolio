@@ -1,6 +1,4 @@
-@import url("../../styles.css");
-
-/* Package Design 페이지 전용 스타일을 아래에 추가하세요. */
+@import url("../styles.css");
 
 .archive-label {
   margin: 1rem 0 0.8rem;
@@ -26,10 +24,27 @@
   text-align: left;
 }
 
-.project-tab:last-child {
+/* .project-tab:last-child {
   border-right: 0;
+} */
+
+/* 첫 번째 줄 아래에 가로선 추가 */
+/* .project-tab:nth-child(-n + 4) {
+  border-bottom: 1px solid #111;
+} */
+
+.project-tabs:has(.project-tab:nth-child(5)) .project-tab:nth-child(-n + 4) {
+  border-bottom: 1px solid #111;
 }
 
+/* 첫 번째 줄 마지막 버튼의 오른쪽 선 제거 */
+.project-tab:nth-child(4n) {
+  border-right: 0;
+}
+/* 마지막 줄에 있는 버튼의 오른쪽 구분선 */
+/* .project-tab:last-child {
+  border-right: 1px solid #111;
+} */
 .project-tab.is-active {
   background: #111;
   color: #fff;
