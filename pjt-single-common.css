@@ -59,6 +59,7 @@ body {
   border-radius: 50%;
   object-fit: cover;
   flex: 0 0 auto;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
 }
 
 .project-info {
