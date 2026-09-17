@@ -30,6 +30,21 @@
   border-right: 0;
 }
 
+/* 첫 번째 줄 아래에 가로선 추가 */
+.project-tab:nth-child(-n + 4) {
+  border-bottom: 1px solid #111;
+}
+
+/* 첫 번째 줄 마지막 버튼의 오른쪽 선 제거 */
+.project-tab:nth-child(4n) {
+  border-right: 0;
+}
+
+/* 마지막 줄에 있는 버튼의 오른쪽 구분선 */
+.project-tab:last-child {
+  border-right: 1px solid #111;
+}
+
 .project-tab.is-active {
   background: #111;
   color: #fff;
