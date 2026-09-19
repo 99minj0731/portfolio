@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>영칼로리포케 Instagram Highlights</title>
+    <link rel="stylesheet" href="./highlight.css" />
+  </head>
+  <body>
+    <main class="instagram">
+      <section class="profile" aria-label="영칼로리포케 인스타그램 프로필">
+        <img
+          class="profile-logo"
+          src="images/profile-logo.png"
+          alt="영칼로리포케 로고"
+        />
+        <div>
+          <div class="profile-title">
+            <h1>youngkcal__official</h1>
+            <span>•••</span>
+          </div>
+          <p class="profile-name">영칼로리 포케</p>
+          <div class="stats">
+            <div>게시물 <span>147</span></div>
+            <div>팔로워 <span>1037</span></div>
+            <div>팔로우 <span>20</span></div>
+          </div>
+          <p class="bio">
+            💪 TREND + HEALTH = YOUNGKCAL<br />📍 매장 · 대전 본점, 강남 학동,
+            판교 외 37곳<br />⬇️ 영칼 홈페이지 &amp; 가맹문의 ⬇️<br /><span
+              class="link"
+              >linktr.ee/youngkcal</span
+            >
+          </p>
+        </div>
+      </section>
+
+      <div class="actions" aria-hidden="true">
+        <button class="follow" type="button">팔로우</button>
+        <button type="button">메시지 보내기</button>
+        <button type="button">♙</button>
+      </div>
+
+      <ul
+        class="highlights"
+        id="highlightList"
+        role="tablist"
+        aria-label="스토리 하이라이트"
+      ></ul>
+
+      <section class="story-section" aria-live="polite">
+        <div class="story-heading">
+          <h2 id="storyTitle">포케</h2>
+        </div>
+        <div class="story-stack" id="storyStack"></div>
+      </section>
+    </main>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

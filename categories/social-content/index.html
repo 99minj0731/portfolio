@@ -18,10 +18,37 @@
         <h1>Social Content</h1>
         <p>사람들이 멈춰 보는 브랜드 콘텐츠를 만듭니다.</p>
       </section>
-      <section class="empty-projects" aria-label="프로젝트 목록">
-        <p>PROJECT ARCHIVE</p>
-        <h2>프로젝트를 이곳에<br />하나씩 채워갈 예정입니다.</h2>
-      </section>
+      <section class="project-archive">
+        <p class="archive-label">PROJECTS</p>
+
+        <div class="project-tabs">
+          <button
+            class="project-tab is-active"
+            data-project="yk-sns"
+            data-src="projects/yk-sns/youngkcal-highlight.html"
+          >
+            Card News
+          </button>
+                    <button
+            class="project-tab"
+            data-project="yk-video"
+            data-src="projects/yk-video/index.html"
+          >
+            Video Production
+          </button>
+          
+        </div>
+        <iframe
+          id="project-frame"
+          class="project-frame"
+          src="projects/yk-sns/index.html"
+          title="Project detail"
+          scrolling="no"
+        ></iframe>
+        <button class="top-button" type="button" aria-label="맨 위로 이동">
+          ↑
+        </button>
+      </section
     </main>
     <script src="../common-script.js"></script>
   </body>

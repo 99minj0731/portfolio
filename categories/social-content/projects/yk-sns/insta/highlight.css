@@ -1,0 +1,268 @@
+:root {
+  --ink: #132f18;
+  --muted: #737773;
+  --line: #e8ebe8;
+  --accent: #213f22;
+  --blue: #4d5dfb;
+  --card-width: clamp(150px, 18vw, 218px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #111;
+  background: #fff;
+  font-family: Pretendard, "Noto Sans KR", Arial, sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.instagram {
+  width: min(100%, 980px);
+  margin: 0 auto;
+  padding: 54px 34px 110px;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 168px 1fr;
+  gap: 48px;
+  align-items: center;
+  max-width: 790px;
+  margin: 0 auto;
+}
+
+.profile-logo {
+  width: 156px;
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.profile-title h1 {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.025em;
+}
+.profile-name {
+  margin: 8px 0 18px;
+  font-size: 16px;
+}
+.stats {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 22px;
+}
+.stats span {
+  font-weight: 700;
+}
+.bio {
+  margin: 0;
+  line-height: 1.55;
+}
+.link {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 52px;
+  gap: 10px;
+  margin: 38px 0 48px;
+}
+
+.actions button {
+  min-height: 50px;
+  border: 0;
+  border-radius: 12px;
+  background: #f0f1f3;
+  font-weight: 700;
+}
+
+.actions .follow {
+  color: #fff;
+  background: var(--blue);
+}
+
+.highlights {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(86px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.highlight-button {
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.highlight-thumb {
+  display: block;
+  width: min(100%, 94px);
+  aspect-ratio: 1;
+  padding: 0;
+  margin: auto;
+  border: 3px solid transparent;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #eef0f1;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.highlight-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--accent);
+}
+
+.highlight-name {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.highlight-button:hover .highlight-thumb,
+.highlight-button[aria-selected="true"] .highlight-thumb {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.story-section {
+  margin-top: 58px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+}
+
+.story-heading {
+  display: none;
+}
+
+.story-stack {
+  display: flex;
+  align-items: flex-start;
+  min-height: calc(var(--card-width) * 1.777);
+  padding: 14px 10px 30px;
+  overflow-x: auto;
+  background: transparent;
+  scrollbar-width: thin;
+}
+
+.story-card {
+  position: relative;
+  z-index: var(--stack-order);
+
+  flex: 0 0 var(--card-width);
+  width: var(--card-width);
+  aspect-ratio: 9 / 16;
+
+  /* 카드가 일정하게 겹치도록 설정 */
+  margin-left: calc(var(--card-width) * -0.53);
+
+  overflow: hidden;
+  border: 0;
+  border-radius: 17px;
+  background: transparent;
+
+  /* 배경처럼 번지지 않는 작은 그림자 */
+  box-shadow:
+    0 4px 8px rgba(18, 47, 24, 0.08),
+    0 10px 20px rgba(18, 47, 24, 0.1);
+
+  /* 카드 기울기 제거 */
+  transform: none;
+  transform-origin: bottom center;
+
+  transition:
+    transform 0.28s ease,
+    margin 0.28s ease,
+    box-shadow 0.28s ease;
+
+  cursor: pointer;
+}
+
+.story-card:first-child {
+  margin-left: 0;
+}
+.story-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.story-card:hover,
+.story-card:focus-visible {
+  z-index: 999;
+  margin-right: calc(var(--card-width) * 0.42);
+  transform: translateY(-12px) scale(1.04);
+
+  box-shadow:
+    0 8px 16px rgba(18, 47, 24, 0.12),
+    0 16px 30px rgba(18, 47, 24, 0.15);
+
+  outline: none;
+}
+
+.empty {
+  width: 100%;
+  padding: 56px 20px;
+  color: var(--muted);
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .instagram {
+    padding: 30px 18px 80px;
+  }
+  .profile {
+    grid-template-columns: 90px 1fr;
+    gap: 20px;
+  }
+  .profile-logo {
+    width: 90px;
+  }
+  .profile-title h1 {
+    font-size: 20px;
+  }
+  .bio,
+  .profile-name {
+    font-size: 14px;
+  }
+  .stats {
+    gap: 12px;
+    font-size: 13px;
+  }
+  .highlights {
+    grid-template-columns: repeat(7, 82px);
+    overflow-x: auto;
+    padding-bottom: 12px;
+  }
+  .highlight-name {
+    font-size: 12px;
+  }
+}
