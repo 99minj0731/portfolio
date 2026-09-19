@@ -132,10 +132,10 @@ button {
   display: block;
   width: 100%;
   height: 100%;
-  border: 1px solid var(--accent);
   border-radius: 50%;
   object-fit: cover;
   background: var(--accent);
+  border: 5px solid rgb(218, 218, 218);
 }
 
 .highlight-name {
@@ -148,8 +148,7 @@ button {
 
 .highlight-button:hover .highlight-thumb,
 .highlight-button[aria-selected="true"] .highlight-thumb {
-  border-color: var(--accent);
-  transform: translateY(-3px);
+  transform: translateY(-5px);
 }
 
 .story-section {
@@ -165,11 +164,15 @@ button {
 .story-stack {
   display: flex;
   align-items: flex-start;
+  width: 100%;
   min-height: calc(var(--card-width) * 1.777);
   padding: 14px 10px 30px;
-  overflow-x: auto;
+
+  /* 가로 스크롤 제거 */
+  overflow-x: hidden;
+  overflow-y: visible;
+
   background: transparent;
-  scrollbar-width: thin;
 }
 
 .story-card {
@@ -180,22 +183,19 @@ button {
   width: var(--card-width);
   aspect-ratio: 9 / 16;
 
-  /* 카드가 일정하게 겹치도록 설정 */
-  margin-left: calc(var(--card-width) * -0.53);
+  /* JS에서 카드 개수에 따라 계산 */
+  margin-left: var(--card-margin, -110px);
 
   overflow: hidden;
   border: 0;
   border-radius: 17px;
   background: transparent;
 
-  /* 배경처럼 번지지 않는 작은 그림자 */
   box-shadow:
     0 4px 8px rgba(18, 47, 24, 0.08),
     0 10px 20px rgba(18, 47, 24, 0.1);
 
-  /* 카드 기울기 제거 */
   transform: none;
-  transform-origin: bottom center;
 
   transition:
     transform 0.28s ease,

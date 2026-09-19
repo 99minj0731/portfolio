@@ -1,12 +1,3 @@
-/*
-  모든 이미지는 images 폴더 한 곳에 저장합니다.
-
-  images/profile-logo.png
-  images/poke-thumb.png
-  images/poke-01.jpg
-
-  게시물 수가 다르면 stories 배열의 파일명을 추가하거나 삭제하세요.
-*/
 const highlights = [
   {
     id: "poke",
@@ -58,65 +49,123 @@ const highlights = [
 ];
 
 const imageDirectory = "images/";
+
 const highlightList = document.querySelector("#highlightList");
 const storyStack = document.querySelector("#storyStack");
 const storyTitle = document.querySelector("#storyTitle");
 
+/* 상단 하이라이트 버튼 생성 */
 function renderTabs(activeId) {
   highlightList.innerHTML = highlights
     .map(
       (item) => `
-    <li>
-      <button class="highlight-button" type="button" role="tab"
-        aria-selected="${item.id === activeId}" data-id="${item.id}">
-        <span class="highlight-thumb">
-          <img src="${imageDirectory}${item.thumbnail}" alt="${item.name} 하이라이트" />
-        </span>
-        <span class="highlight-name">${item.name}</span>
-      </button>
-    </li>
-  `,
+        <li>
+          <button
+            class="highlight-button"
+            type="button"
+            role="tab"
+            aria-selected="${item.id === activeId}"
+            data-id="${item.id}"
+          >
+            <span class="highlight-thumb">
+              <img
+                src="${imageDirectory}${item.thumbnail}"
+                alt="${item.name} 하이라이트"
+              />
+            </span>
+
+            <span class="highlight-name">${item.name}</span>
+          </button>
+        </li>
+      `,
     )
     .join("");
 }
 
+/* 카드 개수에 따라 겹치는 간격 계산 */
+function updateCardSpacing() {
+  const cards = storyStack.querySelectorAll(".story-card");
+  const cardCount = cards.length;
+
+  if (cardCount === 0) return;
+
+  if (cardCount === 1) {
+    storyStack.style.setProperty("--card-margin", "0px");
+    return;
+  }
+
+  const containerStyle = window.getComputedStyle(storyStack);
+
+  const paddingLeft = parseFloat(containerStyle.paddingLeft) || 0;
+
+  const paddingRight = parseFloat(containerStyle.paddingRight) || 0;
+
+  const containerWidth = storyStack.clientWidth - paddingLeft - paddingRight;
+
+  const cardWidth = cards[0].getBoundingClientRect().width;
+
+  const visibleStep = (containerWidth - cardWidth) / (cardCount - 1);
+
+  const cardMargin = visibleStep - cardWidth;
+
+  storyStack.style.setProperty(
+    "--card-margin",
+    `${Math.min(cardMargin, -20)}px`,
+  );
+}
+
+/* 선택한 하이라이트의 스토리 생성 */
 function renderStories(id) {
   const selected = highlights.find((item) => item.id === id);
+
   if (!selected) return;
 
-  storyTitle.textContent = selected.name;
+  if (storyTitle) {
+    storyTitle.textContent = selected.name;
+  }
+
   renderTabs(id);
 
   if (!selected.stories.length) {
     storyStack.innerHTML = '<p class="empty">등록된 스토리가 없습니다.</p>';
+
     return;
   }
 
   storyStack.innerHTML = selected.stories
     .map((file, index) => {
-      const tilt = ((index % 5) - 2) * 1.25;
       const stackOrder = selected.stories.length - index;
 
       return `
-    <article
-      class="story-card"
-      tabindex="0"
-      style="--tilt:${tilt}deg; --stack-order:${stackOrder};"
-      data-number="${index + 1}"
-    >
-      <img
-        src="${imageDirectory}${file}"
-        alt="${selected.name} 스토리 ${index + 1}"
-      />
-    </article>
-  `;
+        <article
+          class="story-card"
+          tabindex="0"
+          style="--stack-order:${stackOrder};"
+        >
+          <img
+            src="${imageDirectory}${file}"
+            alt="${selected.name} 스토리 ${index + 1}"
+          />
+        </article>
+      `;
     })
     .join("");
+
+  /* 카드가 화면에 만들어진 다음 간격 계산 */
+  requestAnimationFrame(updateCardSpacing);
 }
 
+/* 하이라이트 클릭 */
 highlightList.addEventListener("click", (event) => {
   const button = event.target.closest(".highlight-button");
-  if (button) renderStories(button.dataset.id);
+
+  if (!button) return;
+
+  renderStories(button.dataset.id);
 });
 
+/* 화면 크기가 바뀌면 카드 간격 재계산 */
+window.addEventListener("resize", updateCardSpacing);
+
+/* 처음에는 포케 표시 */
 renderStories("poke");
