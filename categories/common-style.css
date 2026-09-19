@@ -1,5 +1,6 @@
 @import url("../styles.css");
 
+/* 각 프로젝트 부모 css */
 .archive-label {
   margin: 1rem 0 0.8rem;
   font-size: 0.8rem;
