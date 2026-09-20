@@ -1,0 +1,466 @@
+@import url("../../styles.css");
+
+/* ========================================
+Profile Page
+======================================== */
+
+.profile-page {
+  padding-bottom: 0;
+}
+
+.profile-hero {
+  padding-bottom: clamp(100px, 14vw, 200px);
+}
+
+.profile-intro {
+  max-width: 720px;
+  word-break: keep-all;
+}
+
+/* 공통 프로필 섹션 */
+
+.profile-section {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
+  gap: clamp(40px, 8vw, 140px);
+  padding: clamp(72px, 10vw, 150px) 0;
+  border-top: 1px solid #111;
+}
+
+.profile-section-label {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #777;
+}
+
+.profile-section-content h2 {
+  max-width: 900px;
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 4.8rem);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.055em;
+  word-break: keep-all;
+}
+
+/* About */
+
+.profile-copy {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  margin-top: clamp(56px, 8vw, 110px);
+}
+
+.profile-copy p {
+  margin: 0;
+  font-size: clamp(1rem, 1.25vw, 1.15rem);
+  line-height: 1.85;
+  letter-spacing: -0.025em;
+  color: #555;
+  word-break: keep-all;
+}
+
+.profile-copy p:first-child {
+  grid-column: 1 / -1;
+  max-width: 760px;
+  font-size: clamp(1.2rem, 1.8vw, 1.65rem);
+  line-height: 1.7;
+  color: #111;
+}
+
+/* Capability */
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: clamp(64px, 8vw, 120px);
+  border-top: 1px solid #111;
+}
+
+.capability-item {
+  min-height: 280px;
+  padding: 30px 32px 36px 0;
+  border-bottom: 1px solid #111;
+}
+
+.capability-item:nth-child(odd) {
+  padding-right: 48px;
+  border-right: 1px solid #111;
+}
+
+.capability-item:nth-child(even) {
+  padding-left: 48px;
+}
+
+.capability-item span {
+  display: block;
+  margin-bottom: 48px;
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.capability-item h3 {
+  margin: 0 0 20px;
+  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.capability-item p {
+  max-width: 440px;
+  margin: 0;
+  font-size: 0.96rem;
+  line-height: 1.75;
+  color: #666;
+  word-break: keep-all;
+}
+
+/* Experience */
+
+.timeline {
+  border-top: 1px solid #111;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.35fr) minmax(0, 1fr);
+  gap: 36px;
+  padding: 38px 0 44px;
+  border-bottom: 1px solid #ddd;
+}
+
+.timeline-year {
+  margin: 3px 0 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: #777;
+}
+
+.timeline-item h3 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.timeline-position {
+  margin: 8px 0 0;
+  font-size: 0.92rem;
+  color: #888;
+}
+
+.timeline-description {
+  max-width: 700px;
+  margin: 24px 0 0;
+  font-size: 0.98rem;
+  line-height: 1.8;
+  color: #555;
+  word-break: keep-all;
+}
+
+/* Education & Certificate */
+
+.simple-list {
+  border-top: 1px solid #111;
+}
+
+.simple-list article {
+  display: grid;
+  grid-template-columns: minmax(100px, 0.25fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: start;
+  padding: 30px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.simple-list article > p {
+  margin: 3px 0 0;
+  font-size: 0.82rem;
+  color: #777;
+}
+
+.simple-list h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 1.6vw, 1.55rem);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+}
+
+.simple-list span {
+  display: block;
+  margin-top: 8px;
+  font-size: 0.92rem;
+  color: #777;
+}
+
+/* Skills */
+
+.skill-list {
+  border-top: 1px solid #111;
+}
+
+.skill-row {
+  display: grid;
+  grid-template-columns: minmax(120px, 0.3fr) minmax(0, 1fr);
+  gap: 32px;
+  padding: 30px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.skill-row h3 {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.skill-row p {
+  margin: 0;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.6;
+  letter-spacing: -0.025em;
+  color: #444;
+}
+
+/* Contact */
+
+.profile-contact {
+  display: grid;
+  grid-template-columns: minmax(140px, 0.35fr) minmax(0, 1.65fr);
+  gap: clamp(40px, 8vw, 140px);
+  margin-top: clamp(60px, 9vw, 130px);
+  padding: clamp(72px, 10vw, 150px) 0;
+  border-top: 1px solid #111;
+}
+
+.contact-content h2 {
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 8rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.065em;
+}
+
+.contact-links {
+  margin-top: clamp(80px, 12vw, 180px);
+  border-top: 1px solid #111;
+}
+
+.contact-links a {
+  display: grid;
+  grid-template-columns: minmax(100px, 0.35fr) minmax(0, 1fr);
+  gap: 30px;
+  padding: 24px 0;
+  border-bottom: 1px solid #111;
+  color: #111;
+  text-decoration: none;
+  transition:
+    padding 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.contact-links a:hover {
+  padding-left: 10px;
+}
+
+.contact-links span {
+  font-size: 0.78rem;
+  color: #777;
+}
+
+.contact-links strong {
+  font-size: clamp(1rem, 1.6vw, 1.35rem);
+  font-weight: 500;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+  .profile-section,
+  .profile-contact {
+    grid-template-columns: 1fr;
+    gap: 42px;
+  }
+
+  .profile-copy {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-copy p:first-child {
+    grid-column: auto;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 640px) {
+  .profile-section {
+    padding: 72px 0;
+  }
+
+  .profile-section-content h2 {
+    font-size: clamp(2rem, 10vw, 3rem);
+  }
+
+  .profile-copy {
+    gap: 30px;
+    margin-top: 48px;
+  }
+
+  .capability-grid {
+    grid-template-columns: 1fr;
+    margin-top: 54px;
+  }
+
+  .capability-item {
+    min-height: auto;
+    padding: 28px 0 34px;
+    border-right: 0;
+  }
+
+  .capability-item:nth-child(odd),
+  .capability-item:nth-child(even) {
+    padding-right: 0;
+    padding-left: 0;
+    border-right: 0;
+  }
+
+  .capability-item span {
+    margin-bottom: 34px;
+  }
+
+  .timeline-item {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 30px 0;
+  }
+
+  .simple-list article {
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .skill-row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .profile-contact {
+    padding: 72px 0 100px;
+  }
+
+  .contact-content h2 {
+    font-size: clamp(2.7rem, 14vw, 4.5rem);
+  }
+
+  .contact-links {
+    margin-top: 70px;
+  }
+
+  .contact-links a {
+    grid-template-columns: 70px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .contact-links strong {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* 각 프로젝트 부모 css */
+.archive-label {
+  margin: 1rem 0 0.8rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: #777;
+}
+
+.project-tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+}
+
+.project-tab {
+  padding: 1.2rem 1rem;
+  border: 0;
+  border-right: 1px solid #111;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* .project-tab:last-child {
+  border-right: 0;
+} */
+
+/* 첫 번째 줄 아래에 가로선 추가 */
+/* .project-tab:nth-child(-n + 4) {
+  border-bottom: 1px solid #111;
+} */
+
+.project-tabs:has(.project-tab:nth-child(5)) .project-tab:nth-child(-n + 4) {
+  border-bottom: 1px solid #111;
+}
+
+/* 첫 번째 줄 마지막 버튼의 오른쪽 선 제거 */
+.project-tab:nth-child(4n) {
+  border-right: 0;
+}
+/* 마지막 줄에 있는 버튼의 오른쪽 구분선 */
+/* .project-tab:last-child {
+  border-right: 1px solid #111;
+} */
+.project-tab.is-active {
+  background: #111;
+  color: #fff;
+}
+
+.project-panel {
+  display: none;
+  padding: 1rem 0;
+}
+
+.project-panel.is-active {
+  display: block;
+}
+
+.project-panel h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1rem, 3vw, 3rem);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+}
+
+.project-frame {
+  width: 100%;
+  border: 0;
+  display: block;
+  overflow: hidden;
+}
+
+.top-button {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 48px;
+  height: 48px;
+  border: 1px solid #111;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.top-button:hover {
+  background: #111;
+  color: #fff;
+}
