@@ -169,3 +169,215 @@ window.addEventListener("resize", updateCardSpacing);
 
 /* 처음에는 포케 표시 */
 renderStories("poke");
+
+const cardNewsPosts = window.CARD_NEWS_POSTS || [];
+
+const feedGrid = document.querySelector("#feedGrid");
+const feedTabs = document.querySelectorAll(".feed-tab");
+
+const postModal = document.querySelector("#postModal");
+const modalImage = document.querySelector("#modalImage");
+const modalVideo = document.querySelector("#modalVideo");
+const modalTitle = document.querySelector("#modalTitle");
+const modalIntent = document.querySelector("#modalIntent");
+const slidePrev = document.querySelector("#slidePrev");
+const slideNext = document.querySelector("#slideNext");
+const slideCount = document.querySelector("#slideCount");
+
+let activePost = null;
+let activeSlideIndex = 0;
+
+/* 피드 썸네일 출력 */
+
+function renderFeed(filter = "all") {
+  const filteredPosts =
+    filter === "all"
+      ? cardNewsPosts
+      : cardNewsPosts.filter((post) => post.category === filter);
+
+  feedGrid.innerHTML = filteredPosts
+    .map(
+      (post) => `
+        <button
+          class="feed-card"
+          type="button"
+          data-post-id="${post.id}"
+          aria-label="${post.title} 카드뉴스 열기"
+        >
+          <img
+            src="${imageDirectory}${post.thumbnail}"
+            alt="${post.title}"
+          />
+        </button>
+      `,
+    )
+    .join("");
+}
+function getPostSlides(post) {
+  const contentSlides = post.slides || post.images || [];
+
+  return [
+    {
+      type: "image",
+      src: post.thumbnail,
+    },
+    ...contentSlides,
+  ];
+}
+
+/* 팝업 이미지 변경 */
+
+function updateModalSlide() {
+  if (!activePost) return;
+
+  const slides = getPostSlides(activePost);
+  const currentSlide = slides[activeSlideIndex];
+
+  /* 이전 영상 재생 중지 */
+  modalVideo.pause();
+  modalVideo.removeAttribute("src");
+  modalVideo.load();
+
+  if (currentSlide.type === "video") {
+    modalImage.hidden = true;
+    modalVideo.hidden = false;
+
+    modalVideo.src = `${imageDirectory}${currentSlide.src}`;
+
+    modalVideo.load();
+  } else {
+    modalVideo.hidden = true;
+    modalImage.hidden = false;
+
+    modalImage.src = `${imageDirectory}${currentSlide.src}`;
+
+    modalImage.alt = `${activePost.title} ${activeSlideIndex + 1}번째 이미지`;
+  }
+
+  slideCount.textContent = `${activeSlideIndex + 1} / ${slides.length}`;
+
+  slidePrev.disabled = activeSlideIndex === 0;
+
+  slideNext.disabled = activeSlideIndex === slides.length - 1;
+}
+
+/* 팝업 열기 */
+
+function openPostModal(postId, clickedCard) {
+  activePost = cardNewsPosts.find((post) => post.id === postId);
+
+  if (!activePost) return;
+
+  activeSlideIndex = 0;
+
+  modalTitle.textContent = activePost.title;
+  modalIntent.textContent = activePost.intent;
+
+  /*
+    클릭한 카드뉴스의 문서 내 위치를 구해서
+    해당 위치 근처에 팝업 표시
+  */
+  const cardTop = clickedCard.getBoundingClientRect().top + window.scrollY;
+
+  const modalTop = Math.max(20, cardTop - 80);
+
+  postModal.style.setProperty("--modal-top", `${modalTop}px`);
+
+  updateModalSlide();
+
+  postModal.classList.add("is-open");
+  postModal.setAttribute("aria-hidden", "false");
+}
+
+/* 팝업 닫기 */
+
+function closePostModal() {
+  modalVideo.pause();
+  modalVideo.removeAttribute("src");
+  modalVideo.load();
+
+  postModal.classList.remove("is-open");
+  postModal.setAttribute("aria-hidden", "true");
+
+  activePost = null;
+  activeSlideIndex = 0;
+}
+
+/* 피드 클릭 */
+
+feedGrid.addEventListener("click", (event) => {
+  const card = event.target.closest(".feed-card");
+
+  if (!card) return;
+
+  openPostModal(card.dataset.postId, card);
+});
+
+/* 상단 탭 클릭 */
+
+feedTabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    feedTabs.forEach((item) => {
+      item.classList.remove("is-active");
+    });
+
+    tab.classList.add("is-active");
+    renderFeed(tab.dataset.filter);
+  });
+});
+
+/* 이전 이미지 */
+
+slidePrev.addEventListener("click", () => {
+  if (!activePost || activeSlideIndex === 0) {
+    return;
+  }
+
+  activeSlideIndex -= 1;
+  updateModalSlide();
+});
+
+/* 다음 이미지 */
+
+slideNext.addEventListener("click", () => {
+  if (!activePost) return;
+
+  const slides = getPostSlides(activePost);
+
+  if (activeSlideIndex >= slides.length - 1) {
+    return;
+  }
+
+  activeSlideIndex += 1;
+  updateModalSlide();
+});
+
+/* 닫기 버튼 및 배경 클릭 */
+
+postModal.addEventListener("click", (event) => {
+  if (event.target.closest("[data-modal-close]")) {
+    closePostModal();
+  }
+});
+
+/* ESC로 팝업 닫기 */
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") {
+    closePostModal();
+  }
+
+  if (!postModal.classList.contains("is-open")) {
+    return;
+  }
+
+  if (event.key === "ArrowLeft") {
+    slidePrev.click();
+  }
+
+  if (event.key === "ArrowRight") {
+    slideNext.click();
+  }
+});
+
+renderFeed();
