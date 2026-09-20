@@ -199,21 +199,34 @@ function renderFeed(filter = "card") {
   );
 
   feedGrid.innerHTML = filteredPosts
-    .map(
-      (post) => `
-        <button
-          class="feed-card"
-          type="button"
-          data-post-id="${post.id}"
-          aria-label="${post.title} 게시물 열기"
-        >
+    .map((post) => {
+      const isClickable = ["card", "video"].includes(post.category);
+
+      if (isClickable) {
+        return `
+          <button
+            class="feed-card"
+            type="button"
+            data-post-id="${post.id}"
+            aria-label="${post.title} 게시물 열기"
+          >
+            <img
+              src="${imageDirectory}${post.thumbnail}"
+              alt="${post.title}"
+            />
+          </button>
+        `;
+      }
+
+      return `
+        <div class="feed-card is-static">
           <img
             src="${imageDirectory}${post.thumbnail}"
             alt="${post.title}"
           />
-        </button>
-      `,
-    )
+        </div>
+      `;
+    })
     .join("");
 }
 function getPostSlides(post) {
@@ -397,7 +410,16 @@ feedGrid.addEventListener("click", (event) => {
 
   if (!card) return;
 
-  openPostModal(card.dataset.postId);
+  const post = cardNewsPosts.find((item) => item.id === card.dataset.postId);
+
+  if (!post) return;
+
+  /* card와 video 게시물만 팝업 열기 */
+  if (!["card", "video"].includes(post.category)) {
+    return;
+  }
+
+  openPostModal(post.id);
 });
 
 /* 상단 탭 클릭 */
