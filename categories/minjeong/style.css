@@ -67,7 +67,7 @@ Profile Page
 
 .profile-copy p:first-child {
   grid-column: 1 / -1;
-  max-width: 760px;
+  max-width: 100%;
   font-size: clamp(1.2rem, 1.8vw, 1.65rem);
   line-height: 1.7;
   color: #111;
