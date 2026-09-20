@@ -57,20 +57,20 @@
       <!-- 카드뉴스 피드 -->
       <section class="feed-section">
         <nav class="feed-tabs" aria-label="콘텐츠 분류">
-          <button class="feed-tab is-active" type="button" data-filter="all">
-            <img src="images/tab-grid.png" alt="전체 게시물" />
+          <button class="feed-tab is-active" type="button" data-filter="card">
+            <img src="images/tab-grid.png" alt="카드뉴스" />
           </button>
 
           <button class="feed-tab" type="button" data-filter="video">
-            <img src="images/tab-card.png" alt="video" />
+            <img src="images/tab-card.png" alt="영상" />
           </button>
 
-          <button class="feed-tab" type="button" data-filter="event">
-            <img src="images/tab-event.png" alt="이벤트" />
+          <button class="feed-tab" type="button" data-filter="regram">
+            <img src="images/tab-event.png" alt="리그램" />
           </button>
 
-          <button class="feed-tab" type="button" data-filter="brand">
-            <img src="images/tab-brand.png" alt="브랜드 소식" />
+          <button class="feed-tab" type="button" data-filter="tag">
+            <img src="images/tab-brand.png" alt="태그" />
           </button>
         </nav>
 
@@ -143,8 +143,24 @@
             </header>
 
             <div class="modal-description">
-              <h2 id="modalTitle"></h2>
-              <p id="modalIntent"></p>
+              <header class="post-detail-title">
+                <p class="post-eyebrow" id="modalEyebrow"></p>
+                <h2 id="modalTitle"></h2>
+              </header>
+
+              <dl class="post-meta">
+                <div>
+                  <dt>컨텐츠</dt>
+                  <dd id="modalPurpose"></dd>
+                </div>
+
+                <div>
+                  <dt>역할</dt>
+                  <dd id="modalRole"></dd>
+                </div>
+              </dl>
+
+              <div class="post-detail-body" id="modalDescription"></div>
             </div>
 
             <footer class="modal-actions">

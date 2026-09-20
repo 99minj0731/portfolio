@@ -497,24 +497,83 @@ button {
 
 .modal-description {
   flex: 1;
-  padding: 30px 24px;
+  padding: 20px 30px;
   overflow-y: auto;
+  color: #222;
 }
 
-.modal-description h2 {
-  margin: 0 0 14px;
-  font-size: 23px;
-  line-height: 1.4;
+/* 상단 카피와 제목 */
+
+.post-detail-title {
+  margin-bottom: 5px;
 }
 
-.modal-description p {
-  margin: 0;
+.post-eyebrow {
+  margin: 0px;
   color: #555;
-  font-size: 15px;
-  line-height: 1.75;
-  white-space: pre-line;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: -0.03em;
 }
 
+.post-detail-title h2 {
+  margin: 0;
+  color: #111;
+  font-size: 25px;
+  font-weight: 550;
+  line-height: 1.25;
+  letter-spacing: -0.045em;
+}
+
+/* 목적·역할 */
+
+.post-meta {
+  margin: 0 0 40px;
+  padding: 0;
+}
+
+.post-meta > div {
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr);
+  gap: 14px;
+  margin-bottom: 0px;
+}
+
+.post-meta dt,
+.post-meta dd {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.post-meta dt {
+  color: #111;
+  font-weight: 700;
+}
+
+.post-meta dd {
+  color: #555;
+  font-weight: 400;
+}
+
+/* 상세 설명 */
+
+.post-detail-body {
+  color: #444;
+}
+
+.post-detail-body p {
+  margin: 0 0 14px;
+  font-size: 15px;
+  line-height: 1.68;
+  letter-spacing: -0.025em;
+  word-break: keep-all;
+}
+
+.post-detail-body p:last-child {
+  margin-bottom: 0;
+}
 .modal-actions {
   display: flex;
   align-items: center;

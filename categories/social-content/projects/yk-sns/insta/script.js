@@ -179,21 +179,23 @@ const postModal = document.querySelector("#postModal");
 const modalImage = document.querySelector("#modalImage");
 const modalVideo = document.querySelector("#modalVideo");
 const modalTitle = document.querySelector("#modalTitle");
-const modalIntent = document.querySelector("#modalIntent");
 const slidePrev = document.querySelector("#slidePrev");
 const slideNext = document.querySelector("#slideNext");
 const slideCount = document.querySelector("#slideCount");
+const modalEyebrow = document.querySelector("#modalEyebrow");
+const modalPurpose = document.querySelector("#modalPurpose");
+const modalRole = document.querySelector("#modalRole");
+const modalDescription = document.querySelector("#modalDescription");
 
 let activePost = null;
 let activeSlideIndex = 0;
 
 /* 피드 썸네일 출력 */
 
-function renderFeed(filter = "all") {
-  const filteredPosts =
-    filter === "all"
-      ? cardNewsPosts
-      : cardNewsPosts.filter((post) => post.category === filter);
+function renderFeed(filter = "card") {
+  const filteredPosts = cardNewsPosts.filter(
+    (post) => post.category === filter,
+  );
 
   feedGrid.innerHTML = filteredPosts
     .map(
@@ -202,7 +204,7 @@ function renderFeed(filter = "all") {
           class="feed-card"
           type="button"
           data-post-id="${post.id}"
-          aria-label="${post.title} 카드뉴스 열기"
+          aria-label="${post.title} 게시물 열기"
         >
           <img
             src="${imageDirectory}${post.thumbnail}"
@@ -270,13 +272,24 @@ function openPostModal(postId, clickedCard) {
 
   activeSlideIndex = 0;
 
-  modalTitle.textContent = activePost.title;
-  modalIntent.textContent = activePost.intent;
+  modalEyebrow.textContent = activePost.eyebrow || "";
 
-  /*
-    클릭한 카드뉴스의 문서 내 위치를 구해서
-    해당 위치 근처에 팝업 표시
-  */
+  modalTitle.textContent = activePost.title || "";
+
+  modalPurpose.textContent = activePost.purpose || "";
+
+  modalRole.textContent = activePost.role || "";
+
+  modalDescription.innerHTML = "";
+
+  (activePost.description || []).forEach((paragraph) => {
+    const paragraphElement = document.createElement("p");
+
+    paragraphElement.textContent = paragraph;
+
+    modalDescription.appendChild(paragraphElement);
+  });
+
   const cardTop = clickedCard.getBoundingClientRect().top + window.scrollY;
 
   const modalTop = Math.max(20, cardTop - 80);
@@ -322,6 +335,7 @@ feedTabs.forEach((tab) => {
     });
 
     tab.classList.add("is-active");
+
     renderFeed(tab.dataset.filter);
   });
 });
@@ -380,4 +394,4 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-renderFeed();
+renderFeed("card");
