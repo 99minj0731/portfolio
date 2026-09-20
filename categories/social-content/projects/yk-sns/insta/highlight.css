@@ -302,7 +302,7 @@ button {
   width: 100%;
   padding: 0;
   border: 0;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: #f3f3f3;
   cursor: pointer;
@@ -330,21 +330,17 @@ button {
 /* =========================
    카드뉴스 팝업
 ========================= */
-
 .post-modal {
   position: absolute;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-  display: none;
+  inset: 0;
   width: 100%;
   height: 100%;
-
-  padding: 30px;
+  display: none;
+  z-index: 1000;
 }
 
 .post-modal.is-open {
-  display: flex;
+  display: block;
 }
 
 .post-modal-backdrop {
@@ -357,50 +353,54 @@ button {
 /* 팝업 전체 크기 */
 .post-modal-content {
   position: absolute;
-  z-index: 1;
-  top: var(--modal-top, 30px);
+  top: var(--modal-top, 50%);
   left: 50%;
+  transform: translate(-50%, -50%);
 
-  display: grid;
+  display: flex;
+  width: fit-content;
+  max-width: calc(100% - 60px);
+  max-height: 85vh;
 
-  /* 왼쪽 이미지 4:5 비율 + 오른쪽 정보 영역 */
-  grid-template-columns: minmax(0, 560px) minmax(320px, 390px);
-
-  width: min(950px, calc(100% - 60px));
-  max-height: min(700px, calc(100vh - 60px));
-
-  overflow: hidden;
-  border-radius: 6px;
   background: #fff;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
-
-  transform: translateX(-50%);
+  overflow: hidden;
 }
-
 /* 왼쪽 이미지 영역 */
 
 .modal-media {
   position: relative;
-  display: grid;
-  place-items: center;
-
-  width: 100%;
-  aspect-ratio: 4 / 5;
-
-  min-width: 0;
+  flex: 0 0 auto;
+  height: min(760px, 85vh);
   overflow: hidden;
+}
+
+/* 카드뉴스 게시물: 항상 3:4 */
+.modal-media.is-card {
+  aspect-ratio: 3 / 4;
   background: #fff;
 }
 
-.modal-media > img,
-.modal-media > video {
+/* 영상 게시물: 항상 9:16 */
+.modal-media.is-video {
+  aspect-ratio: 9 / 16;
+  background: #000;
+}
+.modal-media.is-card > img,
+.modal-media.is-card > video {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background: transparent;
 }
 
+.modal-media.is-video > img,
+.modal-media.is-video > video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+}
 .modal-media > video[hidden],
 .modal-media > img[hidden] {
   display: none;
@@ -464,15 +464,16 @@ button {
 }
 
 /* 오른쪽 설명 영역 */
-
 .modal-info {
+  width: 420px;
+  min-width: 420px;
   display: flex;
-  min-width: 0;
   flex-direction: column;
   background: #fff;
 }
 
 .modal-profile {
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   gap: 7px;
@@ -480,6 +481,7 @@ button {
   padding: 14px 20px;
   border-bottom: 1px solid #ededed;
   font-size: 14px;
+  font-weight: 300;
 }
 
 .modal-profile-image {
@@ -505,11 +507,11 @@ button {
 /* 상단 카피와 제목 */
 
 .post-detail-title {
-  margin-bottom: 5px;
+  margin-bottom: 30px;
 }
 
 .post-eyebrow {
-  margin: 0px;
+  margin: 0 0 5px;
   color: #555;
   font-size: 12px;
   font-weight: 400;
@@ -529,7 +531,7 @@ button {
 /* 목적·역할 */
 
 .post-meta {
-  margin: 0 0 40px;
+  margin: 0 0 50px;
   padding: 0;
 }
 

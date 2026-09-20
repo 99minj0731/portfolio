@@ -178,6 +178,7 @@ const feedTabs = document.querySelectorAll(".feed-tab");
 const postModal = document.querySelector("#postModal");
 const modalImage = document.querySelector("#modalImage");
 const modalVideo = document.querySelector("#modalVideo");
+const modalMedia = document.querySelector(".modal-media");
 const modalTitle = document.querySelector("#modalTitle");
 const slidePrev = document.querySelector("#slidePrev");
 const slideNext = document.querySelector("#slideNext");
@@ -217,7 +218,10 @@ function renderFeed(filter = "card") {
 }
 function getPostSlides(post) {
   const contentSlides = post.slides || post.images || [];
-
+  /* 영상 탭은 썸네일을 제외하고 실제 콘텐츠부터 표시 */
+  if (post.category === "video") {
+    return contentSlides;
+  }
   return [
     {
       type: "image",
@@ -263,21 +267,61 @@ function updateModalSlide() {
   slideNext.disabled = activeSlideIndex === slides.length - 1;
 }
 
+function positionModalInViewport() {
+  let currentWindow = window;
+  let totalFrameTop = 0;
+
+  try {
+    /*
+      현재 iframe부터 최상위 페이지까지 올라가며
+      각 iframe의 화면상 위치를 모두 더함
+    */
+    while (currentWindow !== currentWindow.top && currentWindow.frameElement) {
+      const frameRect = currentWindow.frameElement.getBoundingClientRect();
+
+      totalFrameTop += frameRect.top;
+      currentWindow = currentWindow.parent;
+    }
+
+    /*
+      사용자가 실제로 보고 있는 최상위 화면의 중앙을
+      현재 iframe 내부 좌표로 변환
+    */
+    const topViewportCenter = currentWindow.innerHeight / 2;
+
+    const centerInsideIframe = topViewportCenter - totalFrameTop;
+
+    postModal.style.setProperty("--modal-top", `${centerInsideIframe}px`);
+  } catch (error) {
+    /*
+      iframe 접근이 불가능할 경우 현재 창을 기준으로 처리
+    */
+    const fallbackCenter = window.scrollY + window.innerHeight / 2;
+
+    postModal.style.setProperty("--modal-top", `${fallbackCenter}px`);
+  }
+}
 /* 팝업 열기 */
 
-function openPostModal(postId, clickedCard) {
+function openPostModal(postId) {
   activePost = cardNewsPosts.find((post) => post.id === postId);
 
   if (!activePost) return;
 
+  /* 게시물 카테고리에 따라 팝업 비율 설정 */
+  modalMedia.classList.remove("is-card", "is-video");
+
+  if (activePost.category === "video") {
+    modalMedia.classList.add("is-video");
+  } else {
+    modalMedia.classList.add("is-card");
+  }
+
   activeSlideIndex = 0;
 
   modalEyebrow.textContent = activePost.eyebrow || "";
-
   modalTitle.textContent = activePost.title || "";
-
   modalPurpose.textContent = activePost.purpose || "";
-
   modalRole.textContent = activePost.role || "";
 
   modalDescription.innerHTML = "";
@@ -286,16 +330,9 @@ function openPostModal(postId, clickedCard) {
     const paragraphElement = document.createElement("p");
 
     paragraphElement.textContent = paragraph;
-
     modalDescription.appendChild(paragraphElement);
   });
-
-  const cardTop = clickedCard.getBoundingClientRect().top + window.scrollY;
-
-  const modalTop = Math.max(20, cardTop - 80);
-
-  postModal.style.setProperty("--modal-top", `${modalTop}px`);
-
+  positionModalInViewport();
   updateModalSlide();
 
   postModal.classList.add("is-open");
@@ -316,6 +353,43 @@ function closePostModal() {
   activeSlideIndex = 0;
 }
 
+function repositionOpenedModal() {
+  if (postModal.classList.contains("is-open")) {
+    positionModalInViewport();
+  }
+}
+
+let currentWindow = window;
+
+try {
+  while (currentWindow) {
+    currentWindow.addEventListener("scroll", repositionOpenedModal, {
+      passive: true,
+    });
+
+    currentWindow.addEventListener("resize", repositionOpenedModal);
+
+    if (currentWindow === currentWindow.top) {
+      break;
+    }
+
+    currentWindow = currentWindow.parent;
+  }
+} catch (error) {
+  window.addEventListener("scroll", repositionOpenedModal, {
+    passive: true,
+  });
+
+  window.addEventListener("resize", repositionOpenedModal);
+}
+
+window.addEventListener("resize", repositionOpenedModal);
+
+if (window.parent !== window) {
+  window.parent.addEventListener("scroll", repositionOpenedModal);
+  window.parent.addEventListener("resize", repositionOpenedModal);
+}
+
 /* 피드 클릭 */
 
 feedGrid.addEventListener("click", (event) => {
@@ -323,7 +397,7 @@ feedGrid.addEventListener("click", (event) => {
 
   if (!card) return;
 
-  openPostModal(card.dataset.postId, card);
+  openPostModal(card.dataset.postId);
 });
 
 /* 상단 탭 클릭 */
