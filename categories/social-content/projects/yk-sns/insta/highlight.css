@@ -236,6 +236,107 @@ button {
 }
 
 /* =========================
+   온보딩 가이드 (화살표 + 말풍선)
+========================= */
+
+.guide-anchor {
+  position: relative;
+}
+
+:root {
+  /* 화살표를 양옆으로 얼마나 뺄지 (숫자만 키우면 더 바깥으로 이동) */
+  --guide-offset: 130px;
+}
+
+.guide-callout {
+  position: absolute;
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+  animation: guide-bob 1.6s ease-in-out infinite;
+}
+
+.guide-arrow {
+  width: 40px;
+  height: auto;
+  display: block;
+}
+
+.guide-bubble {
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: #263c1c;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  white-space: nowrap;
+  box-shadow: 0 6px 14px rgba(19, 47, 24, 0.22);
+}
+
+@keyframes guide-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+/* 하이라이트 옆 안내 */
+.guide-callout--highlights {
+  top: -50px;
+  left: calc(-1 * var(--guide-offset));
+}
+
+/* 탭 옆 안내 */
+.guide-callout--tabs {
+  top: -50px;
+  right: calc(-1 * var(--guide-offset));
+  flex-direction: column-reverse;
+}
+
+/* 게시물 옆 안내 */
+.guide-callout--feed {
+  top: 14px;
+  left: calc(-1 * var(--guide-offset));
+}
+
+@media (max-width: 760px) {
+  .guide-callout--highlights,
+  .guide-callout--tabs {
+    top: -42px;
+  }
+
+  .guide-callout--highlights {
+    left: 0;
+  }
+
+  .guide-callout--tabs {
+    right: 0;
+  }
+
+  .guide-callout--feed {
+    top: 10px;
+    left: 0;
+  }
+
+  .guide-bubble {
+    padding: 7px 12px;
+    font-size: 12px;
+    white-space: normal;
+    max-width: 140px;
+  }
+
+  .guide-arrow {
+    width: 32px;
+  }
+}
+
+/* =========================
    카드뉴스 피드
 ========================= */
 

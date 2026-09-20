@@ -41,12 +41,19 @@
         <button type="button">♙</button>
       </div>
 
-      <ul
-        class="highlights"
-        id="highlightList"
-        role="tablist"
-        aria-label="스토리 하이라이트"
-      ></ul>
+      <div class="guide-anchor guide-anchor--highlights">
+        <ul
+          class="highlights"
+          id="highlightList"
+          role="tablist"
+          aria-label="스토리 하이라이트"
+        ></ul>
+
+        <div class="guide-callout guide-callout--highlights" aria-hidden="true">
+          <span class="guide-bubble">하이라이트를 클릭해보세요!</span>
+          <img class="guide-arrow" src="images/click_left.png" alt="" />
+        </div>
+      </div>
 
       <section class="story-section" aria-live="polite">
         <div class="story-heading">
@@ -56,25 +63,39 @@
       </section>
       <!-- 카드뉴스 피드 -->
       <section class="feed-section">
-        <nav class="feed-tabs" aria-label="콘텐츠 분류">
-          <button class="feed-tab is-active" type="button" data-filter="card">
-            <img src="images/tab-grid.png" alt="카드뉴스" />
-          </button>
+        <div class="guide-anchor guide-anchor--tabs">
+          <nav class="feed-tabs" aria-label="콘텐츠 분류">
+            <button class="feed-tab is-active" type="button" data-filter="card">
+              <img src="images/tab-grid.png" alt="카드뉴스" />
+            </button>
 
-          <button class="feed-tab" type="button" data-filter="video">
-            <img src="images/tab-card.png" alt="영상" />
-          </button>
+            <button class="feed-tab" type="button" data-filter="video">
+              <img src="images/tab-card.png" alt="영상" />
+            </button>
 
-          <button class="feed-tab" type="button" data-filter="regram">
-            <img src="images/tab-event.png" alt="리그램" />
-          </button>
+            <button class="feed-tab" type="button" data-filter="regram">
+              <img src="images/tab-event.png" alt="리그램" />
+            </button>
 
-          <button class="feed-tab" type="button" data-filter="tag">
-            <img src="images/tab-brand.png" alt="태그" />
-          </button>
-        </nav>
+            <button class="feed-tab" type="button" data-filter="tag">
+              <img src="images/tab-brand.png" alt="태그" />
+            </button>
+          </nav>
 
-        <div class="feed-grid" id="feedGrid"></div>
+          <div class="guide-callout guide-callout--tabs" aria-hidden="true">
+            <img class="guide-arrow" src="images/click_right.png" alt="" />
+            <span class="guide-bubble">탭을 눌러 골라보세요!</span>
+          </div>
+        </div>
+
+        <div class="guide-anchor guide-anchor--feed">
+          <div class="feed-grid" id="feedGrid"></div>
+
+          <div class="guide-callout guide-callout--feed" aria-hidden="true">
+            <span class="guide-bubble">게시물도 클릭해보세요!</span>
+            <img class="guide-arrow" src="images/click_left.png" alt="" />
+          </div>
+        </div>
       </section>
 
       <!-- 카드뉴스 팝업 -->
