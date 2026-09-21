@@ -98,75 +98,18 @@ body {
   width: 100%;
 }
 
-.portfolio-image {
-  display: block;
-  width: 100%;
+/* 영상: youngkcal.png 맨 밑 우측 하단, 이미지 위로 살짝 겹치게 */
+.portfolio-video-overlay {
+  position: absolute;
+  bottom: 780px;
+  right: 15%;
+  transform: translateY(20%);
+  width: 20%;
   height: auto;
-}
-
-.project-link-wrap {
-  display: flex;
-  justify-content: center;
-  padding: 50px 20px;
-}
-
-.project-link-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-
-  padding: 17px 30px;
-  border: 1px solid #0b3f24;
-  border-radius: 100px;
-
-  background-color: #fff;
-  color: #0b3f24;
-
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-
-  transition:
-    color 0.3s ease,
-    background-color 0.3s ease,
-    transform 0.3s ease;
-}
-
-.project-link-button span {
-  transition: transform 0.3s ease;
-}
-
-.project-link-button:hover {
-  color: #fff;
-  background-color: #0b3f24;
-  transform: translateY(-3px);
-}
-
-.project-link-button:hover span {
-  transform: translate(3px, -3px);
-}
-
-.project-link-button:focus-visible {
-  outline: 3px solid rgba(11, 63, 36, 0.2);
-  outline-offset: 4px;
-}
-
-.project-portfolio .portfolio-image--additional {
-  width: 50%;
-  height: auto;
-  margin: 0 auto;
+  z-index: 10;
 }
 
 @media (max-width: 768px) {
-  .project-link-wrap {
-    padding: 36px 16px;
-  }
-
-  .project-link-button {
-    width: 100%;
-    max-width: 300px;
-  }
   .project-detail {
     padding: 56px 18px 80px;
   }
@@ -174,8 +117,5 @@ body {
   .project-info {
     grid-template-columns: 1fr;
     margin: 48px 0;
-  }
-  .project-portfolio .portfolio-image--additional {
-    width: 90%;
   }
 }
