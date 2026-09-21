@@ -245,7 +245,7 @@ button {
 
 :root {
   /* 화살표를 양옆으로 얼마나 뺄지 (숫자만 키우면 더 바깥으로 이동) */
-  --guide-offset: 130px;
+  --guide-offset: 100px;
 }
 
 .guide-callout {
@@ -260,17 +260,18 @@ button {
 }
 
 .guide-arrow {
-  width: 40px;
+  width: 30px;
   height: auto;
   display: block;
 }
 
 .guide-bubble {
-  padding: 9px 16px;
+  padding: 20px 9px;
   border-radius: 999px;
-  background: #263c1c;
-  color: #fff;
-  font-size: 13px;
+  border: 1px #263c1c;
+  background: #fffc;
+  color: #263c1c;
+  font-size: 20px;
   font-weight: 400;
   white-space: nowrap;
   box-shadow: 0 6px 14px rgba(19, 47, 24, 0.22);
