@@ -490,4 +490,4 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
-renderFeed("card");
+renderFeed("video");
