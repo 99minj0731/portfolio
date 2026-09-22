@@ -3,6 +3,55 @@
 ========================= */
 
 window.CARD_NEWS_POSTS = [
+    //카사바
+  {
+    id: "cassava",
+    category: "card",
+    eyebrow: "노밀가루 · 글루텐프리 · 비건",
+    title: "건강한 간식, 카사바칩 꿀조합",
+
+    purpose: "카사바칩 출시 홍보",
+    role: "콘텐츠 기획 · 촬영 · 제작",
+
+    description: [
+      "신메뉴 카사바칩의 제품 특징과 다양한 섭취 방법을 소개하기 위한 카드뉴스입니다.",
+
+      "샐러드와 포케의 토핑으로 활용하거나 음료와 요거트에 곁들이는 등 카사바칩을 맛있게 즐길 수 있는 조합 소개했습니다.",
+
+      "실제 매장에서 함께 구매할 수 있는 메뉴를 중심으로 조합을 구성해 카사바칩과 기존 제품을 노출했습니다.",
+    ],
+    thumbnail: "cassava-thumb.png",
+    slides: [
+      {
+        type: "image",
+        src: "cassava-01.png",
+      },
+      {
+        type: "video",
+        src: "cassava-02.mp4",
+      },
+      {
+        type: "image",
+        src: "cassava-03.png",
+      },
+      {
+        type: "video",
+        src: "cassava-04.mp4",
+      },
+      {
+        type: "video",
+        src: "cassava-05.mp4",
+      },
+      {
+        type: "image",
+        src: "cassava-06.png",
+      },
+      {
+        type: "image",
+        src: "cassava-07.png",
+      },
+    ],
+  },
   //월요일영칼
   {
     id: "monday",
@@ -76,55 +125,6 @@ window.CARD_NEWS_POSTS = [
       {
         type: "image",
         src: "snack-06.png",
-      },
-    ],
-  },
-  //카사바
-  {
-    id: "cassava",
-    category: "card",
-    eyebrow: "노밀가루 · 글루텐프리 · 비건",
-    title: "건강한 간식, 카사바칩 꿀조합",
-
-    purpose: "카사바칩 출시 홍보",
-    role: "콘텐츠 기획 · 촬영 · 제작",
-
-    description: [
-      "신메뉴 카사바칩의 제품 특징과 다양한 섭취 방법을 소개하기 위한 카드뉴스입니다.",
-
-      "샐러드와 포케의 토핑으로 활용하거나 음료와 요거트에 곁들이는 등 카사바칩을 맛있게 즐길 수 있는 조합 소개했습니다.",
-
-      "실제 매장에서 함께 구매할 수 있는 메뉴를 중심으로 조합을 구성해 카사바칩과 기존 제품을 노출했습니다.",
-    ],
-    thumbnail: "cassava-thumb.png",
-    slides: [
-      {
-        type: "image",
-        src: "cassava-01.png",
-      },
-      {
-        type: "video",
-        src: "cassava-02.mp4",
-      },
-      {
-        type: "image",
-        src: "cassava-03.png",
-      },
-      {
-        type: "video",
-        src: "cassava-04.mp4",
-      },
-      {
-        type: "video",
-        src: "cassava-05.mp4",
-      },
-      {
-        type: "image",
-        src: "cassava-06.png",
-      },
-      {
-        type: "image",
-        src: "cassava-07.png",
       },
     ],
   },
