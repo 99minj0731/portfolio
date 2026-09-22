@@ -251,16 +251,12 @@ button {
 .guide-callout {
   position: absolute;
   z-index: 40;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 8px;
   pointer-events: none;
-  animation: guide-bob 1.6s ease-in-out infinite;
+  animation: guide-bob 1.3s ease-in-out infinite;
 }
 
 .guide-arrow {
-  width: 30px;
+  width: 80px;
   height: auto;
   display: block;
 }
@@ -289,13 +285,13 @@ button {
 
 /* 하이라이트 옆 안내 */
 .guide-callout--highlights {
-  top: -50px;
+  top: -20px;
   left: calc(-1 * var(--guide-offset));
 }
 
 /* 탭 옆 안내 */
 .guide-callout--tabs {
-  top: -50px;
+  top: -20px;
   right: calc(-1 * var(--guide-offset));
   flex-direction: column-reverse;
 }
